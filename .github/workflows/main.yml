@@ -33,13 +33,14 @@ jobs:
           npx cap add android
           npx cap sync android
 
-      - name: Generate App Icon
+      - name: Generate App Icon & Splash Screen
         run: |
           mkdir assets
-          # Copy your uploaded file and rename it to icon.png for the generator
+          # Copy your uploaded file and use it for both the Icon and Splash Screen
           cp file_000000008a0481f4952f0b961bdb651b.png assets/icon.png
-          # Run the Capacitor tool to inject the icon into the Android code
-          npx @capacitor/assets generate --iconOnly --android
+          cp file_000000008a0481f4952f0b961bdb651b.png assets/splash.png
+          # Run the Capacitor tool without the deprecated flag
+          npx @capacitor/assets generate --android
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4

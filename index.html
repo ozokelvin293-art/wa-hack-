@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Web Portal Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        whatsapp: {
+                            50: '#eefdf5',
+                            100: '#d7fbe8',
+                            500: '#25d366',
+                            600: '#1ebe57',
+                            700: '#15803d',
+                            900: '#075e54',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-button {
+            box-shadow: 0 0 25px -5px rgba(37, 211, 102, 0.4);
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 35px 0px rgba(37, 211, 102, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-whatsapp-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-whatsapp-600 to-whatsapp-500 flex items-center justify-center text-white shadow-lg shadow-whatsapp-500/20">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">WA Workspace</span>
+                    <span class="hidden sm:inline-block ml-2 text-xs px-2 py-0.5 rounded-full bg-whatsapp-500/10 text-whatsapp-500 border border-whatsapp-500/20 font-medium">v2.4 Pro</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800 text-xs text-slate-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>System Online</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Content -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col justify-center">
+        
+        <!-- Hero Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Left Column: Description & CTA -->
+            <div class="lg:col-span-7 space-y-6 text-left">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-xs font-medium">
+                    <i class="fa-solid fa-mobile-screen-button text-whatsapp-500"></i>
+                    <span>Native App Integration</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                    Access WhatsApp Web <br/>
+                    <span class="bg-gradient-to-r from-whatsapp-500 via-emerald-400 to-teal-400 bg-clip-text text-transparent">Natively on Android</span>
+                </h1>
+
+                <p class="text-slate-400 text-base sm:text-lg max-w-xl leading-relaxed">
+                    Experience seamless messaging integration directly inside your workspace. Launching the view will securely navigate the app's native WebView directly to WhatsApp.
+                </p>
+
+                <!-- CTA Action Area -->
+                <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                    <button onclick="launchNativeWhatsApp()" class="glow-button px-8 py-4 rounded-xl bg-gradient-to-r from-whatsapp-600 to-whatsapp-500 hover:from-whatsapp-500 hover:to-whatsapp-600 text-white font-semibold text-lg flex items-center justify-center space-x-3 transition transform active:scale-95 duration-200 cursor-pointer">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>Open WhatsApp</span>
+                        <i class="fa-solid fa-arrow-right text-sm ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Interactive Card Preview -->
+            <div class="lg:col-span-5">
+                <div class="glass-panel p-6 sm:p-8 rounded-2xl shadow-2xl relative overflow-hidden group">
+                    <div class="absolute -right-16 -top-16 w-48 h-48 bg-whatsapp-500/10 rounded-full blur-3xl group-hover:bg-whatsapp-500/20 transition duration-500"></div>
+                    
+                    <div class="relative z-10 space-y-6">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500">web.whatsapp.com</span>
+                        </div>
+
+                        <div class="bg-slate-950/60 p-6 rounded-xl border border-slate-800/80 text-center space-y-4">
+                            <div class="w-16 h-16 mx-auto rounded-full bg-whatsapp-500/10 flex items-center justify-center text-whatsapp-500 border border-whatsapp-500/20 shadow-inner">
+                                <i class="fa-brands fa-whatsapp text-3xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-slate-200 text-lg">Workspace Integration Ready</h3>
+                            <p class="text-xs text-slate-400 max-w-xs mx-auto">
+                                Click <strong class="text-slate-200">Open WhatsApp</strong> to transition the app directly to the messaging interface.
+                            </p>
+                            <button onclick="launchNativeWhatsApp()" class="w-full py-2.5 px-4 rounded-lg bg-whatsapp-600/20 hover:bg-whatsapp-600/30 text-whatsapp-400 font-medium text-sm border border-whatsapp-500/30 transition">
+                                Launch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 WA Workspace Portal. Built for high-performance native workflows.</p>
+    </footer>
+
+    <!-- JavaScript Controllers -->
+    <script>
+        function launchNativeWhatsApp() {
+            // Because this is running inside an Android WebView wrapped by Capacitor,
+            // we do NOT use an iframe. We tell the top-level app window to load the URL directly.
+            // The capacitor.config.json file ensures the User-Agent is spoofed to desktop Chrome.
+            window.location.href = "https://web.whatsapp.com/";
+        }
+    </script>
+</body>
+</html>

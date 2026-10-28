@@ -1,6 +1,6 @@
 {
-  "appId": "com.kelvin.waworkspace",
-  "appName": "WA Workspace",
+  "appId": "com.kelvin.painhijack",
+  "appName": "PAIN",
   "webDir": "www",
   "server": {
     "allowNavigation": [

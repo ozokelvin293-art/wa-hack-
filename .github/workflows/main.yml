@@ -19,8 +19,10 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm install
-        
+        run: |
+          npm install
+          npm install @capacitor/assets
+
       - name: Prepare Web Assets
         run: |
           mkdir www
@@ -30,6 +32,14 @@ jobs:
         run: |
           npx cap add android
           npx cap sync android
+
+      - name: Generate App Icon
+        run: |
+          mkdir assets
+          # Copy your uploaded file and rename it to icon.png for the generator
+          cp file_000000008a0481f4952f0b961bdb651b.png assets/icon.png
+          # Run the Capacitor tool to inject the icon into the Android code
+          npx @capacitor/assets generate --iconOnly --android
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4
@@ -48,6 +58,6 @@ jobs:
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: WA-Workspace-App
+          name: PAIN-App
           path: android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 7
